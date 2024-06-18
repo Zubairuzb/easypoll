@@ -55,15 +55,15 @@ const tabs = {
   },
 };
 
-//verify human with nada.bot
-function isHumanWithNadaBot() {
-  Near.asyncView("v1.nadabot.near", "is_human", {
-    account_id: context.accountId,
-  }).then((result) => {
+const accountId = props.accountId ?? context.accountId;
+const [isHuman, setIsHuman] = useState(false);
+
+Near.asyncView("v1.nadabot.near", "is_human", { account_id: accountId }).then(
+  (result) => {
+    setIsHuman(result);
     console.log(result);
-  });
-  return result;
-}
+  }
+);
 
 const getOgToken = () => {
   const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
@@ -91,7 +91,7 @@ const blackList = []; // use it to hide bad users
 
 const indexVersion = "4.0.0";
 
-const hasSBTToken = isHumanWithNadaBot() !== undefined;
+const hasSBTToken = isHuman;
 
 const hasOgToken = getOgToken() !== undefined;
 
