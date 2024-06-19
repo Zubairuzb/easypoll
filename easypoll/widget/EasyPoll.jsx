@@ -61,7 +61,6 @@ const [isHuman, setIsHuman] = useState(false);
 Near.asyncView("v1.nadabot.near", "is_human", { account_id: accountId }).then(
   (result) => {
     setIsHuman(result);
-    console.log(result);
   }
 );
 
