@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "bos-workspace": "^1.0.0-alpha.27"
+  }
+}
